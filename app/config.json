@@ -1,0 +1,17 @@
+{
+        "appbase": {
+                "hostname" : "scalr.api.appbase.io",
+                "appname" : "test_123",
+                "username" : "KrbNzdHSB",
+                "password" : "44774e7c-9ff4-4654-8614-2a8fe87fc1c4"
+        },
+        "twitter": {
+                "consumer_key" : "WvJ0zyKxIx14NO2SxJ0GzsDCA",
+                "consumer_secret" : "C9OhKmJc7lpX4BuLA9aJtTa7ID8MX0JKE7oWbSCkV7nWwoUtjf",
+                "access_token" : "2931205783-czvimACww6pIVhYFWEglm94zae4k4Sbe1kjlysX",
+                "access_token_secret" : "EaiGlfEC6GwnU9TkusU7TqJGC4pWGDaZAAIaYvcjO8hg6"
+        },
+        "foursquare": {
+                "oauth_token" : "HZRHBJ3R1OKEPFKA5JD1BJ4L4LTUXNPJFM5VQ5NOTH3H2LBP"
+        }
+}
