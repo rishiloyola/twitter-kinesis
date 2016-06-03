@@ -63,9 +63,9 @@ stream.on('tweet', function(tweet) {
 function verifyTweets(tweet) {
 
     if (tweet) {
-        if (tweet.entities) {
-            if (tweet.entities.urls[0]) {
-                if (tweet.entities.urls[0].display_url) {
+        if (tweet.text) {
+            if (tweet.user && tweet.user.name) {
+                if (tweet.user.location) {
                     return true;
                 }
             }
