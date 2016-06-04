@@ -2,15 +2,19 @@
 
 var util = require('util');
 var logger = require('../util/logger');
+var AWS = require('aws-sdk');
+var config = require('../bin/config.js');
+var kinesis = new AWS.Kinesis({region : config.kinesis.region});
 
-function sampleProducer(kinesis, config) {
+
+function sampleProducer() {
     var log = logger().getLogger('sampleProducer');
 
     function _createStreamIfNotCreated(callback) {
         var status;
         var params = {
-            ShardCount: config.shards,
-            StreamName: config.stream
+            ShardCount: config.sampleProducer.shards,
+            StreamName: config.sampleProducer.stream
         };
 
         var status = kinesis.createStream(params, function(err, data) {
@@ -38,7 +42,7 @@ function sampleProducer(kinesis, config) {
     }
 
     function _waitForStreamToBecomeActive(callback) {
-        kinesis.describeStream({ StreamName: config.stream }, function(err, data) {
+        kinesis.describeStream({ StreamName: config.sampleProducer.stream }, function(err, data) {
             if (!err) {
                 log.info(util.format('Current status of the stream is %s.', data.StreamDescription.StreamStatus));
                 if (data.StreamDescription.StreamStatus === 'ACTIVE') {
@@ -46,26 +50,19 @@ function sampleProducer(kinesis, config) {
                 } else {
                     setTimeout(function() {
                         _waitForStreamToBecomeActive(callback);
-                    }, 1000 * config.waitBetweenDescribeCallsInSeconds);
+                    }, 1000 * config.sampleProducer.waitBetweenDescribeCallsInSeconds);
                 }
             }
         });
     }
 
     function _writeToKinesis(data) {
-        var currTime = new Date().getMilliseconds();
         var sensor = 'sensor-' + Math.floor(Math.random() * 100000);
-        var reading = Math.floor(Math.random() * 1000000);
-
-        var record = JSON.stringify({
-            time: currTime,
-            reading: data
-        });
 
         var recordParams = {
-            Data: record,
+            Data: data,
             PartitionKey: sensor,
-            StreamName: config.stream
+            StreamName: config.sampleProducer.stream
         };
 
         kinesis.putRecord(recordParams, function(err, data) {
