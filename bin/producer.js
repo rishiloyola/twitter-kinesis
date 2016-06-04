@@ -60,7 +60,7 @@ function sampleProducer() {
         var sensor = 'sensor-' + Math.floor(Math.random() * 100000);
 
         var recordParams = {
-            Data: data,
+            Data: JSON.stringify(data),
             PartitionKey: sensor,
             StreamName: config.sampleProducer.stream
         };
