@@ -1,14 +1,11 @@
 {
-        "appbase": {
-                "hostname" : "scalr.api.appbase.io",
-                "appname" : "test_123",
-                "username" : "<appbase user id>",
-                "password" : "<appbase password>"
-        },
         "twitter": {
-                "consumer_key" : "<twitter key>",
-                "consumer_secret" : "<twitter consumer secret>",
-                "access_token" : "<twitter access token>",
-                "access_token_secret" : "<twitter token secret>"
+                "consumer_key" : "XXXX",
+                "consumer_secret" : "XXXX",
+                "access_token" : "XXXX",
+                "access_token_secret" : "XXXX"
+        },
+        "foursquare": {
+                "oauth_token" : "XXXX"
         }
 }
