@@ -23,10 +23,10 @@ function sampleProducer() {
                     callback(err);
                     return false;;
                 } else {
-                    log.info(util.format('%s stream is already created. Re-using it.', config.stream));
+                    log.info(util.format('%s stream is already created. Re-using it.', config.sampleProducer.stream));
                 }
             } else {
-                log.info(util.format("%s stream doesn't exist. Created a new stream with that name ..", config.stream));
+                log.info(util.format("%s stream doesn't exist. Created a new stream with that name ..", config.sampleProducer.stream));
             }
             // Poll to make sure stream is in ACTIVE state before start pushing data.
             _waitForStreamToBecomeActive(callback);
