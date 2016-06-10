@@ -41,7 +41,7 @@ stream.on('tweet', function(tweet) {
 
             if(parsedbody.meta.code==200){
                 var data = {
-                  id: parsedbody.response.checkin.id
+                  id: parsedbody.response.checkin.id,
                   shout: parsedbody.response.checkin.shout,
                   city: parsedbody.response.checkin.venue.location.city,
                   category: parsedbody.response.checkin.venue.categories[0].shortName,
